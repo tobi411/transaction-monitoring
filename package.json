@@ -10,6 +10,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
     "axios": "^1.7.8",
     "next": "15.0.3",
     "react": "^18.3.1",
