@@ -5,6 +5,7 @@ import Dropdown from './Dropdown';
 import Account from './Account';
 import axios from 'axios';
 import Banner from './Banner';
+import { saveToStorage, getFromStorage } from 'app/utils/storage';
 
 const ACCOUNT_STORAGE_KEY = 'selectedAccount';
 
@@ -13,7 +14,7 @@ export default function Main() {
   const [selectedAccountId, setSelectedAccountId] = useState<string>();
   const [fetchAccountStatus, setFetchAccountState] = useState<API_STATUS>();
 
-  const selectedAccountInStorage = localStorage.getItem(ACCOUNT_STORAGE_KEY);
+  const selectedAccountInStorage = getFromStorage(ACCOUNT_STORAGE_KEY);
 
   const getAccounts = async () => {
     try {
@@ -54,7 +55,7 @@ export default function Main() {
 
   const handleAccountSelected = (value: string) => {
     setSelectedAccountId(value);
-    localStorage.setItem(ACCOUNT_STORAGE_KEY, value);
+    saveToStorage(ACCOUNT_STORAGE_KEY, value);
   };
 
   return (

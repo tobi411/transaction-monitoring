@@ -5,6 +5,7 @@ import TransactionFilters from './TransactionFilters';
 import ConnectionStatus from './ConnectionStatus';
 import { TransactionResponse, Filters } from 'app/lib/types';
 import { format } from 'date-fns';
+import { saveToStorage, getFromStorage } from 'app/utils/storage';
 
 type TransactionProps = {
   accountId: string;
@@ -43,13 +44,6 @@ const transformRowData = (data: TransactionResponse): Transaction => {
   };
 };
 
-const saveToStorage = (key: string, value: string) => {
-  localStorage.setItem(key, value);
-};
-
-const getFromStorage = (key: string) => {
-  return localStorage.getItem(key);
-};
 
 const Transactions = ({ accountId }: TransactionProps) => {
   const [data, setData] = useState<TransactionResponse[]>([]);
@@ -68,14 +62,14 @@ const Transactions = ({ accountId }: TransactionProps) => {
 
   const getInitialFilters = () => {
     const savedFilter = getFromStorage(FILTER_STORAGE_KEY);
-    const parsedSaveFilter = savedFilter ? JSON.parse(savedFilter) : null
-    const initialValue = { ...defaultFilters }
+    const parsedSaveFilter = savedFilter ? JSON.parse(savedFilter) : null;
+    const initialValue = { ...defaultFilters };
     if (parsedSaveFilter) {
       initialValue.maxAmount = parsedSaveFilter?.maxAmount;
       initialValue.minAmount = parsedSaveFilter?.minAmount;
       initialValue.currencies = parsedSaveFilter?.currencies;
     }
-    return initialValue
+    return initialValue;
   };
 
   const [filters, setFilters] = useState<Filters>(getInitialFilters());
