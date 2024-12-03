@@ -20,7 +20,7 @@ const CurrencyFilter = ({ availableCurrencies, onChange }: Props) => {
 
   return (
     <div className="flex flex-col">
-      <label className="font-medium mb-1">Transaction Currencies</label>
+      <label className="font-medium mb-1 text-sm">Currency</label>
       <div className="grid grid-cols-3 gap-2">
         {availableCurrencies.map((currency) => (
           <label key={currency} className="flex items-center space-x-2">

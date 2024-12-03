@@ -23,7 +23,7 @@ const AmountFilter = ({ onChange }: Props) => {
 
   return (
     <div className="flex flex-col">
-      <label className="font-medium mb-1">Transaction Amount Range</label>
+      <label className="font-medium mb-1 text-sm">Amount Range</label>
       <div className="flex space-x-4">
         <input
           type="number"

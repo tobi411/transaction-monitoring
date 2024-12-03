@@ -25,3 +25,9 @@ export type Filters = {
   maxAmount?: number;
   currencies?: string[];
 };
+
+export enum API_STATUS {
+  LOADING = 'LOADING',
+  FAILED = 'FAILED',
+  COMPLETED = 'COMPLETED',
+}

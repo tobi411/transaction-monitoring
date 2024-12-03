@@ -129,7 +129,7 @@ const Transactions = ({ accountId }: TransactionProps) => {
       connectWebSocket();
     }
 
-    // Cleanup WebSocket connection on component unmount
+    // Cleanup WebSocket 
     return () => {
       if (wsRef.current?.readyState === WebSocket.OPEN) {
         disconnectWebSocket();
@@ -168,7 +168,7 @@ const Transactions = ({ accountId }: TransactionProps) => {
   };
 
   return (
-    <>
+    <div className='mt-4'>
       <TransactionFilters
         filters={filters}
         onFilterChange={handleFilterChange}
@@ -186,7 +186,7 @@ const Transactions = ({ accountId }: TransactionProps) => {
         rowHeight={45}
         width={'100%'}
       />
-    </>
+    </div>
   );
 };
 

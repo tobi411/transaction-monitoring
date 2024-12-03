@@ -15,24 +15,17 @@ type Props = {
 };
 
 const TransactionFilters = ({ filters, onFilterChange, availableCurrencies }: Props) => {
-  // const [filters, setFilters] = useState({
-  //   minAmount: undefined,
-  //   maxAmount: undefined,
-  //   currencies: [],
-  // });
-
+  
   const handleAmountChange = (
     min: number | undefined,
     max: number | undefined
   ) => {
     const updatedFilters = { ...filters, minAmount: min, maxAmount: max };
-    // setFilters(updatedFilters);
     onFilterChange(updatedFilters);
   };
 
   const handleCurrencyChange = (currencies: string[]) => {
     const updatedFilters = { ...filters, currencies };
-    // setFilters(updatedFilters);
     onFilterChange(updatedFilters);
   };
 
