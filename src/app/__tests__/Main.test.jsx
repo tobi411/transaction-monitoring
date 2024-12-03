@@ -1,15 +1,23 @@
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import renderer from 'react-test-renderer';
 import Main from '../components/Main';
 
 jest.mock('axios');
 
 describe('Page', () => {
-  it('render content', () => {
-    render(<Main accounts={[]} />);
+  it('render content', async () => {
+    await waitFor(() => {
+      render(<Main accounts={[]} />);
+    });
 
-    const heading = screen.getByText('Content goes here');
+    const content = screen.getByText('Account');
 
-    expect(heading).toBeInTheDocument();
+    expect(content).toBeInTheDocument();
+  });
+
+  it('matches previous snapshot', () => {
+    let domTree = renderer.create(<Main />);
+    expect(domTree).toMatchSnapshot();
   });
 });

@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page matches previous snapshot 1`] = `
+<div
+  className="container mx-auto py-6"
+>
+  <div
+    className="flex"
+  >
+    <div
+      className="relative inline-block text-left"
+      data-headlessui-state=""
+    >
+      <div
+        className="w-52"
+      >
+        <label
+          className="font-bold text-sm"
+          htmlFor="dropdown-button"
+        >
+          Account
+        </label>
+        <button
+          aria-expanded={false}
+          aria-haspopup="menu"
+          autoFocus={false}
+          className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm text-gray-900  shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+          data-headlessui-state=""
+          id="dropdown-button"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onPointerDown={[Function]}
+          onPointerUp={[Function]}
+          onTouchStart={[Function]}
+          type="button"
+        >
+          <div />
+          <svg
+            aria-hidden="true"
+            className="-mr-1 size-5 text-gray-400 "
+            data-slot="icon"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+              fillRule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
