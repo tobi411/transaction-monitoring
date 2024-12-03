@@ -16,8 +16,11 @@ describe('Page', () => {
     expect(content).toBeInTheDocument();
   });
 
-  it('matches previous snapshot', () => {
-    let domTree = renderer.create(<Main />);
+  it('matches previous snapshot', async () => {
+    let domTree;
+    await waitFor(() => {
+      domTree = renderer.create(<Main />);
+    });
     expect(domTree).toMatchSnapshot();
   });
 });

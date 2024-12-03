@@ -44,12 +44,13 @@ const transformRowData = (data: TransactionResponse): Transaction => {
   };
 };
 
-
 const Transactions = ({ accountId }: TransactionProps) => {
   const [data, setData] = useState<TransactionResponse[]>([]);
   const [filteredData, setFilteredData] = useState<Transaction[]>([]);
   const [connectionActive, setConnectionActive] = useState<boolean>(false);
   const [connectionLoading, setConnectionLoading] = useState<boolean>(false);
+  const [transactionIdBeforePause, setTransactionIdBeforePause] =
+    useState<string>('');
   const [availableCurrencies, setAvailableCurrencies] = useState<Set<string>>(
     new Set()
   );
@@ -78,6 +79,7 @@ const Transactions = ({ accountId }: TransactionProps) => {
   useEffect(() => {
     setData([]);
     setFilteredData([]);
+    setTransactionIdBeforePause('');
   }, [accountId]);
 
   const handleNewTransaction = (transaction: TransactionResponse) => {
@@ -97,7 +99,11 @@ const Transactions = ({ accountId }: TransactionProps) => {
     }
 
     const activeWebSocketUrl = WEBSOCKET_URL.replace(':accountId', accountId);
-    const ws = new WebSocket(`${activeWebSocketUrl}`);
+    const ws = new WebSocket(
+      `${activeWebSocketUrl}${
+        transactionIdBeforePause ? '?since=' + transactionIdBeforePause : ''
+      }`
+    );
     wsRef.current = ws;
 
     ws.onopen = () => {
@@ -126,7 +132,7 @@ const Transactions = ({ accountId }: TransactionProps) => {
       console.error('WebSocket error:', error);
       ws.close();
     };
-  }, [accountId]);
+  }, [accountId, transactionIdBeforePause]);
 
   const disconnectWebSocket = useCallback(() => {
     if (wsRef.current) {
@@ -136,10 +142,23 @@ const Transactions = ({ accountId }: TransactionProps) => {
     }
   }, []);
 
+  const updateLastTransaction = () => {
+    if (!transactionIdBeforePause) {
+      setTransactionIdBeforePause(data[0].transactionId);
+    } else {
+      setTransactionIdBeforePause('');
+    }
+  };
+
   const toggleConnection = () => {
     setConnectionLoading(true);
     if (connectionActive && wsRef.current) return disconnectWebSocket();
     connectWebSocket();
+  };
+
+  const handleConnectionToggle = () => {
+    updateLastTransaction();
+    toggleConnection();
   };
 
   useEffect(() => {
@@ -196,7 +215,7 @@ const Transactions = ({ accountId }: TransactionProps) => {
       <ConnectionStatus
         isActive={connectionActive}
         isLoading={connectionLoading}
-        onClick={toggleConnection}
+        onClick={() => handleConnectionToggle()}
       />
       <Table
         rows={filteredData}

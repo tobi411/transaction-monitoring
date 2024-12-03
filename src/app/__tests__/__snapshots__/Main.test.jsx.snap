@@ -1,62 +1,141 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Page matches previous snapshot 1`] = `
-<div
-  className="container mx-auto py-6"
->
+[
   <div
-    className="flex"
+    className="relative isolate flex items-center gap-x-6 overflow-hidden bg-red-500 px-6 py-2.5 sm:px-3.5 sm:before:flex-1"
   >
     <div
-      className="relative inline-block text-left"
-      data-headlessui-state=""
+      className="flex flex-wrap items-center gap-x-4 gap-y-2"
+    >
+      <p
+        className="text-sm/6 text-gray-900"
+      >
+        <strong
+          className="font-semibold"
+        >
+          Error
+        </strong>
+        <svg
+          aria-hidden="true"
+          className="mx-2 inline size-0.5 fill-current"
+          viewBox="0 0 2 2"
+        >
+          <circle
+            cx={1}
+            cy={1}
+            r={1}
+          />
+        </svg>
+        Request to get accounts failed.
+      </p>
+      <a
+        className="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+        href="#"
+        onClick={[Function]}
+      >
+        Try again 
+        <svg
+          aria-hidden="true"
+          className="inline size-5 text-white"
+          data-slot="icon"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clipRule="evenodd"
+            d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </a>
+    </div>
+    <div
+      className="flex flex-1 justify-end"
+    >
+      <button
+        className="-m-3 p-3 focus-visible:outline-offset-[-4px]"
+        onClick={[Function]}
+        type="button"
+      >
+        <span
+          className="sr-only"
+        >
+          Dismiss
+        </span>
+        <svg
+          aria-hidden="true"
+          className="size-5 text-gray-900"
+          data-slot="icon"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>,
+  <div
+    className="container mx-auto py-6"
+  >
+    <div
+      className="flex"
     >
       <div
-        className="w-52"
+        className="relative inline-block text-left"
+        data-headlessui-state=""
       >
-        <label
-          className="font-bold text-sm"
-          htmlFor="dropdown-button"
+        <div
+          className="w-52"
         >
-          Account
-        </label>
-        <button
-          aria-expanded={false}
-          aria-haspopup="menu"
-          autoFocus={false}
-          className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm text-gray-900  shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          data-headlessui-state=""
-          id="dropdown-button"
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          onKeyUp={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          onPointerDown={[Function]}
-          onPointerUp={[Function]}
-          onTouchStart={[Function]}
-          type="button"
-        >
-          <div />
-          <svg
-            aria-hidden="true"
-            className="-mr-1 size-5 text-gray-400 "
-            data-slot="icon"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+          <label
+            className="font-bold text-sm"
+            htmlFor="dropdown-button"
           >
-            <path
-              clipRule="evenodd"
-              d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
-              fillRule="evenodd"
-            />
-          </svg>
-        </button>
+            Account
+          </label>
+          <button
+            aria-expanded={false}
+            aria-haspopup="menu"
+            autoFocus={false}
+            className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm text-gray-900  shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+            data-headlessui-state=""
+            id="dropdown-button"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onPointerDown={[Function]}
+            onPointerUp={[Function]}
+            onTouchStart={[Function]}
+            type="button"
+          >
+            <div />
+            <svg
+              aria-hidden="true"
+              className="-mr-1 size-5 text-gray-400 "
+              data-slot="icon"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clipRule="evenodd"
+                d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+]
 `;
