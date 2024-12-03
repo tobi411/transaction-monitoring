@@ -8,7 +8,7 @@ export type AccountResponse = {
   email: string;
 };
 
-export type Transaction = {
+export type TransactionResponse = {
   transactionId: string;
   direction: 'inflow' | 'outflow';
   amount: number;

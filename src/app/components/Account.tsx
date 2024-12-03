@@ -31,7 +31,7 @@ const Account = ({ account }: AccountDetailsProps) => {
       </Card>
       <Card>
         <Subheader value='Transactions' />
-        <Transactions />
+        <Transactions accountId={account.accountId} />
       </Card>
     </div>
   );
