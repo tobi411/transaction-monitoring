@@ -3,34 +3,36 @@ import React, { useState } from 'react';
 
 type Props = {
   availableCurrencies: string[];
+  selectedCurrencies?: string[];
   onChange: (selectedCurrencies: string[]) => void;
 };
 
-const CurrencyFilter = ({ availableCurrencies, onChange }: Props) => {
-  const [selectedCurrencies, setSelectedCurrencies] = useState<string[]>([]);
-
+const CurrencyFilter = ({
+  availableCurrencies,
+  selectedCurrencies,
+  onChange
+}: Props) => {
   const handleCheckboxChange = (currency: string) => {
-    const updatedCurrencies = selectedCurrencies.includes(currency)
+    const updatedCurrencies = selectedCurrencies?.includes(currency)
       ? selectedCurrencies.filter((c) => c !== currency)
-      : [...selectedCurrencies, currency];
+      : [...(selectedCurrencies || []), currency];
 
-    setSelectedCurrencies(updatedCurrencies);
     onChange(updatedCurrencies);
   };
 
   return (
-    <div className="flex flex-col">
-      <label className="font-medium mb-1 text-sm">Currency</label>
-      <div className="grid grid-cols-3 gap-2">
+    <div className='flex flex-col'>
+      <label className='font-bold mb-1 text-xs'>Currency</label>
+      <div className='grid grid-cols-3 gap-2'>
         {availableCurrencies.map((currency) => (
-          <label key={currency} className="flex items-center space-x-2">
+          <label key={currency} className='flex items-center space-x-2'>
             <input
-              type="checkbox"
+              type='checkbox'
               value={currency}
-              checked={selectedCurrencies.includes(currency)}
+              checked={selectedCurrencies?.includes(currency)}
               onChange={() => handleCheckboxChange(currency)}
             />
-            <span>{currency}</span>
+            <span className='text-sm'>{currency}</span>
           </label>
         ))}
       </div>

@@ -32,9 +32,10 @@ const TransactionFilters = ({ filters, onFilterChange, availableCurrencies }: Pr
   return (
     <div className='p-4 bg-gray-100 rounded-md space-y-4'>
       <h2 className='text-sm font-semibold'>Filter Transactions</h2>
-      <AmountFilter onChange={handleAmountChange} />
+      <AmountFilter onChange={handleAmountChange} minAmount={filters.minAmount} maxAmount={filters.maxAmount} />
       <CurrencyFilter
         availableCurrencies={availableCurrencies}
+        selectedCurrencies={filters.currencies}
         onChange={handleCurrencyChange}
       />
     </div>

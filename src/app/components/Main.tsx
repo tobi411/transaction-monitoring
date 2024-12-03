@@ -6,10 +6,14 @@ import Account from './Account';
 import axios from 'axios';
 import Banner from './Banner';
 
+const ACCOUNT_STORAGE_KEY = 'selectedAccount';
+
 export default function Main() {
   const [accounts, setAccounts] = useState<Array<AccountResponse>>([]);
   const [selectedAccountId, setSelectedAccountId] = useState<string>();
   const [fetchAccountStatus, setFetchAccountState] = useState<API_STATUS>();
+
+  const selectedAccountInStorage = localStorage.getItem(ACCOUNT_STORAGE_KEY);
 
   const getAccounts = async () => {
     try {
@@ -21,7 +25,6 @@ export default function Main() {
       setFetchAccountState(API_STATUS.COMPLETED);
       setAccounts(accountsResponse);
     } catch (e) {
-      console.log('error getting accounts');
       setFetchAccountState(API_STATUS.FAILED);
     }
   };
@@ -35,6 +38,12 @@ export default function Main() {
     return accounts?.find((account) => account.accountId === selectedAccountId);
   }, [selectedAccountId, accounts]);
 
+  useEffect(() => {
+    if (selectedAccountInStorage) {
+      setSelectedAccountId(selectedAccountInStorage);
+    }
+  }, [selectedAccountInStorage]);
+
   const dropdownOptions = useMemo(() => {
     return accounts.map((account) => ({
       label: account.accountName,
@@ -42,6 +51,11 @@ export default function Main() {
       id: account.accountId,
     }));
   }, [accounts]);
+
+  const handleAccountSelected = (value: string) => {
+    setSelectedAccountId(value);
+    localStorage.setItem(ACCOUNT_STORAGE_KEY, value);
+  };
 
   return (
     <>
@@ -52,7 +66,7 @@ export default function Main() {
             label='Account'
             options={dropdownOptions}
             value={selectedAccount?.accountName}
-            onClick={(value) => setSelectedAccountId(value)}
+            onClick={(value) => handleAccountSelected(value)}
           />
           <Account account={selectedAccount} />
         </div>

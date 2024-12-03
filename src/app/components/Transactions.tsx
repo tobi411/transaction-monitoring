@@ -21,6 +21,8 @@ type Transaction = {
 const WEBSOCKET_URL =
   'wss://paloma-financial-auditor-0aff70148dbe.herokuapp.com/accounts/:accountId/transactions';
 
+const FILTER_STORAGE_KEY = 'transactionFilters';
+
 const columns = [
   { id: 'date', label: 'Date' },
   { id: 'source', label: 'Source' },
@@ -41,6 +43,14 @@ const transformRowData = (data: TransactionResponse): Transaction => {
   };
 };
 
+const saveToStorage = (key: string, value: string) => {
+  localStorage.setItem(key, value);
+};
+
+const getFromStorage = (key: string) => {
+  return localStorage.getItem(key);
+};
+
 const Transactions = ({ accountId }: TransactionProps) => {
   const [data, setData] = useState<TransactionResponse[]>([]);
   const [filteredData, setFilteredData] = useState<Transaction[]>([]);
@@ -49,12 +59,26 @@ const Transactions = ({ accountId }: TransactionProps) => {
   const [availableCurrencies, setAvailableCurrencies] = useState<Set<string>>(
     new Set()
   );
-  const [filters, setFilters] = useState<Filters>({
+
+  const defaultFilters = {
     minAmount: undefined,
     maxAmount: undefined,
     currencies: [],
-  });
+  };
 
+  const getInitialFilters = () => {
+    const savedFilter = getFromStorage(FILTER_STORAGE_KEY);
+    const parsedSaveFilter = savedFilter ? JSON.parse(savedFilter) : null
+    const initialValue = { ...defaultFilters }
+    if (parsedSaveFilter) {
+      initialValue.maxAmount = parsedSaveFilter?.maxAmount;
+      initialValue.minAmount = parsedSaveFilter?.minAmount;
+      initialValue.currencies = parsedSaveFilter?.currencies;
+    }
+    return initialValue
+  };
+
+  const [filters, setFilters] = useState<Filters>(getInitialFilters());
   const wsRef = useRef<WebSocket | null>(null);
 
   useEffect(() => {
@@ -129,7 +153,7 @@ const Transactions = ({ accountId }: TransactionProps) => {
       connectWebSocket();
     }
 
-    // Cleanup WebSocket 
+    // Cleanup WebSocket
     return () => {
       if (wsRef.current?.readyState === WebSocket.OPEN) {
         disconnectWebSocket();
@@ -161,10 +185,11 @@ const Transactions = ({ accountId }: TransactionProps) => {
       transformRowData(row)
     );
     filters.minAmount = updatedFilters.minAmount;
-    filters.minAmount = updatedFilters.minAmount;
+    filters.maxAmount = updatedFilters.maxAmount;
     filters.currencies = updatedFilters.currencies;
     setFilters(filters);
     setFilteredData(updatedData);
+    saveToStorage(FILTER_STORAGE_KEY, JSON.stringify(updatedFilters));
   };
 
   return (
