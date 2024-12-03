@@ -3,7 +3,7 @@ import React from 'react';
 import { FixedSizeList as List, ListChildComponentProps } from 'react-window';
 
 const columnStyles =
-  'flex-1 p-3 self-center text-left border-r border-gray-300 whitespace-nowrap overflow-hidden text-ellipsis';
+  'flex-1 text-sm p-3 self-center text-left border-r border-gray-300 whitespace-nowrap overflow-hidden text-ellipsis';
 
 type Column = {
   id: string, label: string
@@ -28,7 +28,7 @@ const VirtualizedTable = ({
 
   // Header component
   const Header = () => (
-    <div className='bg-gray-200 font-bold flex border-b border-gray-300 text-left'>
+    <div className='bg-gray-200 font-bold flex border-b border-gray-300 text-left text-sm'>
       {columns.map((col) => (
         <div key={col.id} className={columnStyles}>
           {col.label}
