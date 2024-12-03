@@ -1,4 +1,4 @@
-export type Account = {
+export type AccountResponse = {
   accountId: string;
   accountName: string;
   currency: 'USD' | 'CAD' | 'EUR' | 'GBP' | 'AUD' | 'JPY';

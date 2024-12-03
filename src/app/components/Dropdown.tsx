@@ -1,5 +1,7 @@
+'use client';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { v4 as uuidv4 } from 'uuid';
 
 type DropdownOption = {
   label: string;
@@ -44,13 +46,13 @@ export default function Dropdown({
           transition
           className='absolute right-0 z-10 mt-2 w-52 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 transition 
           focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 
-          data-[enter]:ease-out data-[leave]:ease-in max-h-56 overflow-y-auto cursor-pointer'
+          data-[enter]:ease-out data-[leave]:ease-in max-h-80 overflow-y-auto cursor-pointer'
         >
           <div className='py-1'>
-            {options?.map((option) => (
+            {options?.map((option, index) => (
               <MenuItem>
                 <div
-                  key={`dropdown-option-${option.id}`}
+                  key={`dropdown-option-${uuidv4()}`}
                   onClick={() => onClick(option.value)}
                   className='block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none'
                 >

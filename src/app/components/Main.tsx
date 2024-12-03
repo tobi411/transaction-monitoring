@@ -1,11 +1,11 @@
 'use client';
 import { useMemo, useState } from 'react';
-import { Account } from '../lib/types';
+import { AccountResponse } from '../lib/types';
 import Dropdown from './Dropdown';
-import AccountDetails from './AccountDetails';
+import Account from './Account';
 
 interface MainProps {
-  accounts: Account[];
+  accounts: AccountResponse[];
 }
 
 export default function Main({ accounts }: MainProps) {
@@ -26,13 +26,15 @@ export default function Main({ accounts }: MainProps) {
 
   return (
     <div className='container mx-auto py-6'>
-      <Dropdown
-        label='Account'
-        options={dropdownOptions}
-        value={selectedAccount?.accountName}
-        onClick={(value) => setSelectedAccountId(value)}
-      />
-      <AccountDetails account={selectedAccount} />
+      <div className='flex'>
+        <Dropdown
+          label='Account'
+          options={dropdownOptions}
+          value={selectedAccount?.accountName}
+          onClick={(value) => setSelectedAccountId(value)}
+        />
+        <Account account={selectedAccount} />
+      </div>
     </div>
   );
 }
