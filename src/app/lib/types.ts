@@ -17,4 +17,11 @@ export type TransactionResponse = {
   destinationName: string;
   sourceId: string;
   sourceName: string;
+  timestamp: string;
+};
+
+export type Filters = {
+  minAmount?: number;
+  maxAmount?: number;
+  currencies?: string[];
 };
